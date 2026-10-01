@@ -1014,7 +1014,6 @@ function emptyRow(tbody, cols, text) {
   tbody.appendChild(tr);
 }
 
-/* STREAMING_CHUNK:Implementing API load, table rendering, and dynamic calculations... -->
 /* =========================
    LOAD DATA
 ========================= */
@@ -1115,7 +1114,6 @@ function render() {
   );
 }
 
-/* STREAMING_CHUNK:Defining product CRUD actions, CSV generation, and submit events... -->
 /* =========================
    PRODUCT ACTIONS
 ========================= */
@@ -1148,8 +1146,7 @@ async function undoLastSale(id) {
 async function deleteProduct(id, name) {
   if (busy) return;
   
-  // Custom dialog placeholder used to fit platform guidelines
-  const confirmDelete = window.confirm ? confirm('Delete "' + name + '" from the table? This cannot be undone.') : true;
+  const confirmDelete = window.confirm('Delete "' + name + '" from the table? This cannot be undone.');
   if (!confirmDelete) return;
 
   await runProductAction("/api/products/" + id, "Delete failed: ");
