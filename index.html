@@ -188,9 +188,6 @@ aside {
   min-width: 0;
 }
 
-/* IMPORTANT FIX:
-   Prevent revenue summary from stretching or overlapping
-*/
 .layout > main {
   min-width: 0;
   width: 100%;
@@ -596,8 +593,41 @@ tbody tr:not(.empty-row):hover {
     padding: 20px;
   }
 
+  /*
+    IMPORTANT:
+    On smaller screens, main becomes transparent
+    to the grid so its sections can be individually
+    reordered.
+  */
+
   .layout {
+    display: grid;
     grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .layout > main {
+    display: contents;
+  }
+
+  /* ADD PRODUCT */
+  .layout > main > section:first-child {
+    grid-row: 1;
+  }
+
+  /* REVENUE SUMMARY */
+  .layout > .summary {
+    grid-row: 2;
+  }
+
+  /* PRODUCT INVENTORY */
+  .layout > main > section:nth-child(2) {
+    grid-row: 3;
+  }
+
+  /* SALES HISTORY */
+  .layout > main > section:nth-child(3) {
+    grid-row: 4;
   }
 
   .summary {
@@ -696,7 +726,7 @@ tbody tr:not(.empty-row):hover {
 
   .form-panel {
     padding: 14px;
-    margin-bottom: 20px;
+    margin-bottom: 0;
     border-radius: 14px;
   }
 
@@ -723,7 +753,44 @@ tbody tr:not(.empty-row):hover {
     font-size: 13px;
   }
 
-  /* MOBILE TABLE CARDS */
+  /* =========================
+     MOBILE ORDER
+     
+     1. Add Product
+     2. Revenue Summary
+     3. Product Inventory
+     4. Sales History
+  ========================= */
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .layout > main {
+    display: contents;
+  }
+
+  .layout > main > section:first-child {
+    grid-row: 1;
+  }
+
+  .layout > .summary {
+    grid-row: 2;
+  }
+
+  .layout > main > section:nth-child(2) {
+    grid-row: 3;
+  }
+
+  .layout > main > section:nth-child(3) {
+    grid-row: 4;
+  }
+
+  /* =========================
+     MOBILE TABLE CARDS
+  ========================= */
 
   .table-wrap {
     overflow: visible;
@@ -829,7 +896,7 @@ tbody tr:not(.empty-row):hover {
   }
 
   .history-section {
-    margin-top: 25px;
+    margin-top: 0;
   }
 
   .history-panel {
@@ -847,7 +914,9 @@ tbody tr:not(.empty-row):hover {
     padding: 5px 13px;
   }
 
-  /* REVENUE CARD */
+  /* =========================
+     REVENUE CARD
+  ========================= */
 
   .summary {
     display: block;
@@ -998,9 +1067,7 @@ tbody tr:not(.empty-row):hover {
 
   <div class="layout">
 
-    <!-- =========================
-         LEFT SIDE
-    ========================== -->
+    <!-- LEFT SIDE -->
 
     <main>
 
@@ -1216,9 +1283,7 @@ tbody tr:not(.empty-row):hover {
     </main>
 
 
-    <!-- =========================
-         RIGHT SIDE REVENUE
-    ========================== -->
+    <!-- REVENUE SUMMARY -->
 
     <aside
       class="summary"
