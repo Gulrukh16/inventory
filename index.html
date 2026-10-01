@@ -36,6 +36,7 @@
 /* =========================
    RESET & BASE STYLES
 ========================= */
+
 * {
   box-sizing: border-box;
 }
@@ -79,6 +80,7 @@ button {
 /* =========================
    HEADER
 ========================= */
+
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -154,6 +156,7 @@ button {
 /* =========================
    ERROR MESSAGE BANNER
 ========================= */
+
 .banner {
   background: var(--red-soft);
   color: var(--red);
@@ -170,8 +173,9 @@ button {
 }
 
 /* =========================
-   MAIN LAYOUT & PANELS
+   MAIN LAYOUT
 ========================= */
+
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 285px;
@@ -183,6 +187,23 @@ main,
 aside {
   min-width: 0;
 }
+
+/* IMPORTANT FIX:
+   Prevent revenue summary from stretching or overlapping
+*/
+.layout > main {
+  min-width: 0;
+  width: 100%;
+}
+
+.layout > .summary {
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================
+   SECTION HEADINGS
+========================= */
 
 .section-heading {
   display: flex;
@@ -204,6 +225,10 @@ aside {
   font-size: 12px;
 }
 
+/* =========================
+   PANELS
+========================= */
+
 .panel,
 .summary,
 .history-panel {
@@ -218,9 +243,18 @@ aside {
   margin-bottom: 22px;
 }
 
+/* =========================
+   TOOLBAR
+========================= */
+
 .toolbar {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(120px, .8fr) minmax(140px, .9fr) auto auto;
+  grid-template-columns:
+    minmax(0, 1.35fr)
+    minmax(120px, .8fr)
+    minmax(140px, .9fr)
+    auto
+    auto;
   gap: 12px;
   align-items: end;
 }
@@ -259,6 +293,7 @@ aside {
 /* =========================
    BUTTONS
 ========================= */
+
 button {
   display: inline-flex;
   align-items: center;
@@ -322,6 +357,7 @@ button:disabled {
 /* =========================
    TABLES
 ========================= */
+
 .table-wrap {
   width: 100%;
   max-width: 100%;
@@ -417,8 +453,9 @@ tbody tr:not(.empty-row):hover {
 }
 
 /* =========================
-   SALES HISTORY & REVENUE SUMMARY
+   SALES HISTORY
 ========================= */
+
 .history-section {
   margin-top: 25px;
 }
@@ -436,6 +473,10 @@ tbody tr:not(.empty-row):hover {
 .history-panel table {
   min-width: 480px;
 }
+
+/* =========================
+   REVENUE SUMMARY
+========================= */
 
 .summary {
   padding: 22px;
@@ -506,6 +547,10 @@ tbody tr:not(.empty-row):hover {
   font-weight: 700;
 }
 
+/* =========================
+   FOOTER
+========================= */
+
 .footer-note {
   margin: 18px 2px 0;
   color: #969c95;
@@ -514,34 +559,47 @@ tbody tr:not(.empty-row):hover {
 }
 
 /* =========================
-   RESPONSIVE MEDIA QUERIES
+   TABLET
 ========================= */
+
 @media (max-width: 1120px) {
+
   body {
     padding: 22px;
   }
+
   .layout {
     grid-template-columns: minmax(0, 1fr) 250px;
     gap: 16px;
   }
+
   .toolbar {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
   .toolbar button {
     width: 100%;
   }
+
   .summary {
     padding: 18px;
   }
 }
 
+/* =========================
+   SMALL TABLET
+========================= */
+
 @media (max-width: 850px) {
+
   body {
     padding: 20px;
   }
+
   .layout {
     grid-template-columns: minmax(0, 1fr);
   }
+
   .summary {
     position: static;
     display: grid;
@@ -549,37 +607,50 @@ tbody tr:not(.empty-row):hover {
     align-items: center;
     column-gap: 18px;
   }
+
   .summary-top {
     margin: 0;
     grid-column: 1 / -1;
   }
+
   .summary-label {
     margin-bottom: 5px;
   }
+
   .summary-divider {
     display: none;
   }
+
   .summary-stat {
     justify-content: flex-end;
   }
+
   .summary .total {
     font-size: 27px;
   }
 }
 
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 640px) {
+
   body {
     padding: 14px;
     padding-bottom: max(20px, env(safe-area-inset-bottom));
   }
+
   .topbar {
     align-items: flex-start;
     margin-bottom: 22px;
     gap: 10px;
   }
+
   .brand {
     gap: 10px;
   }
+
   .brand-mark {
     width: 40px;
     height: 40px;
@@ -587,58 +658,73 @@ tbody tr:not(.empty-row):hover {
     border-radius: 12px;
     font-size: 18px;
   }
+
   .brand-copy h1 {
     font-size: 22px;
   }
+
   .brand-subtitle {
     margin-top: 4px;
     font-size: 8px;
     letter-spacing: .17em;
   }
+
   .topbar-note {
     font-size: 11px;
     padding: 7px 9px;
     gap: 6px;
   }
+
   .status-dot {
     width: 6px;
     height: 6px;
   }
+
   .section-heading {
     align-items: flex-start;
     flex-direction: column;
     gap: 3px;
   }
+
   .section-heading h2 {
     font-size: 17px;
   }
+
   .section-kicker {
     font-size: 11px;
   }
+
   .form-panel {
     padding: 14px;
     margin-bottom: 20px;
     border-radius: 14px;
   }
+
   .toolbar {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 12px;
   }
+
   .toolbar label {
     font-size: 12px;
     gap: 6px;
   }
+
   .toolbar input {
     min-height: 47px;
     font-size: 16px;
     padding: 12px;
   }
+
   .toolbar button {
     width: 100%;
     min-height: 46px;
     font-size: 13px;
   }
+
+  /* MOBILE TABLE CARDS */
+
   .table-wrap {
     overflow: visible;
     border: 0;
@@ -646,6 +732,7 @@ tbody tr:not(.empty-row):hover {
     box-shadow: none;
     border-radius: 0;
   }
+
   table,
   .history-panel table {
     min-width: 0;
@@ -653,13 +740,16 @@ tbody tr:not(.empty-row):hover {
     border-collapse: separate;
     border-spacing: 0;
   }
+
   table thead {
     display: none;
   }
+
   table tbody {
     display: grid;
     gap: 11px;
   }
+
   table tbody tr:not(.empty-row) {
     display: block;
     min-width: 0;
@@ -669,9 +759,11 @@ tbody tr:not(.empty-row):hover {
     background: var(--surface);
     box-shadow: 0 5px 16px rgba(34,42,36,.035);
   }
+
   table tbody tr:not(.empty-row):hover {
     background: var(--surface);
   }
+
   table tbody td {
     display: flex;
     align-items: flex-start;
@@ -686,9 +778,11 @@ tbody tr:not(.empty-row):hover {
     white-space: normal;
     overflow-wrap: anywhere;
   }
+
   table tbody tr:not(.empty-row) td:last-child {
     border-bottom: 0;
   }
+
   table tbody td::before {
     content: attr(data-label);
     flex: 0 0 43%;
@@ -701,6 +795,7 @@ tbody tr:not(.empty-row):hover {
     text-transform: uppercase;
     overflow-wrap: anywhere;
   }
+
   table tbody td.empty {
     display: block;
     padding: 22px 14px;
@@ -709,18 +804,22 @@ tbody tr:not(.empty-row):hover {
     background: var(--surface);
     text-align: center;
   }
+
   table tbody td.empty::before {
     content: none;
   }
+
   .actions-cell {
     display: grid !important;
     grid-template-columns: minmax(0, 1fr);
     gap: 7px;
     min-width: 0;
   }
+
   .actions-cell::before {
     padding-top: 5px;
   }
+
   .actions-cell button {
     width: 100%;
     min-height: 42px;
@@ -728,85 +827,116 @@ tbody tr:not(.empty-row):hover {
     font-size: 12px;
     white-space: normal;
   }
+
   .history-section {
     margin-top: 25px;
   }
+
   .history-panel {
     border: 0;
     box-shadow: none;
     background: transparent;
     overflow: visible;
   }
+
   .history-panel .table-wrap {
     overflow: visible;
   }
+
   .history-panel table tbody tr {
     padding: 5px 13px;
   }
+
+  /* REVENUE CARD */
+
   .summary {
     display: block;
     padding: 18px;
     border-radius: 14px;
   }
+
   .summary-top {
     margin-bottom: 20px;
   }
+
   .summary h2 {
     font-size: 16px;
   }
+
   .summary-icon {
     width: 35px;
     height: 35px;
   }
+
   .summary .total {
     font-size: 27px;
   }
+
   .summary-stat {
     justify-content: space-between;
     margin-top: 16px;
   }
+
   .footer-note {
     font-size: 10px;
     margin-top: 15px;
   }
 }
 
+/* =========================
+   VERY SMALL MOBILE
+========================= */
+
 @media (max-width: 380px) {
+
   body {
     padding: 10px;
   }
+
   .brand-copy h1 {
     font-size: 20px;
   }
+
   .brand-subtitle {
     font-size: 7px;
   }
+
   .brand-mark {
     width: 36px;
     height: 36px;
     flex-basis: 36px;
   }
+
   .form-panel {
     padding: 11px;
   }
+
   table tbody tr:not(.empty-row) {
     padding: 5px 10px;
   }
+
   table tbody td {
     gap: 8px;
     font-size: 12px;
   }
+
   table tbody td::before {
     flex-basis: 40%;
     max-width: 40%;
     font-size: 9px;
   }
+
   .summary {
     padding: 15px;
   }
 }
 
+/* =========================
+   REDUCED MOTION
+========================= */
+
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -821,151 +951,355 @@ tbody tr:not(.empty-row):hover {
 
 <div class="app-shell">
 
-  <!-- =========================
-       HEADER
-  ========================== -->
+  <!-- HEADER -->
+
   <header class="topbar">
+
     <div class="brand">
+
       <div class="brand-mark" aria-hidden="true">
         R.
       </div>
+
       <div class="brand-copy">
+
         <h1>PALETTES</h1>
-        <p class="brand-subtitle">by R</p>
+
+        <p class="brand-subtitle">
+          by R
+        </p>
+
       </div>
+
     </div>
 
     <div class="topbar-note">
+
       <span class="status-dot"></span>
+
       System overview
+
     </div>
+
   </header>
 
-  <!-- =========================
-       ERROR MESSAGE BANNER
-  ========================== -->
-  <div class="banner" id="banner" role="alert" hidden></div>
 
-  <!-- =========================
-       MAIN LAYOUT
-  ========================== -->
+  <!-- ERROR MESSAGE -->
+
+  <div
+    class="banner"
+    id="banner"
+    role="alert"
+    hidden>
+  </div>
+
+
+  <!-- MAIN GRID -->
+
   <div class="layout">
+
+    <!-- =========================
+         LEFT SIDE
+    ========================== -->
+
     <main>
 
       <!-- ADD PRODUCT -->
+
       <section aria-labelledby="add-product-heading">
+
         <div class="section-heading">
-          <h2 id="add-product-heading">Add a product</h2>
-          <span class="section-kicker">Keep your stock up to date</span>
+
+          <h2 id="add-product-heading">
+            Add a product
+          </h2>
+
+          <span class="section-kicker">
+            Keep your stock up to date
+          </span>
+
         </div>
 
         <div class="panel form-panel">
+
           <form class="toolbar" id="addForm">
+
             <label>
+
               Product name
-              <input id="name" type="text" autocomplete="off" required>
+
+              <input
+                id="name"
+                type="text"
+                autocomplete="off"
+                required>
+
             </label>
 
+
             <label>
+
               Total quantity
-              <input id="qty" type="number" min="0" step="1" inputmode="numeric" required>
+
+              <input
+                id="qty"
+                type="number"
+                min="0"
+                step="1"
+                inputmode="numeric"
+                required>
+
             </label>
+
 
             <label>
+
               Price per unit (PKR)
-              <input id="price" type="number" min="0" step="0.01" inputmode="decimal" required>
+
+              <input
+                id="price"
+                type="number"
+                min="0"
+                step="0.01"
+                inputmode="decimal"
+                required>
+
             </label>
 
-            <button class="btn-primary" type="submit">＋ Add product</button>
-            <button class="btn-ghost" type="button" id="csvBtn">↓ Export CSV</button>
+
+            <button
+              class="btn-primary"
+              type="submit">
+
+              ＋ Add product
+
+            </button>
+
+
+            <button
+              class="btn-ghost"
+              type="button"
+              id="csvBtn">
+
+              ↓ Export CSV
+
+            </button>
+
           </form>
+
         </div>
+
       </section>
-<!-- REVENUE SUMMARY SIDEBAR -->
-    <aside class="summary" aria-labelledby="summary-heading">
-      <div class="summary-top">
-        <h2 id="summary-heading">Revenue summary</h2>
-        <div class="summary-icon" aria-hidden="true">↗</div>
-      </div>
 
-      <p class="summary-label">Total system revenue</p>
-      <div class="total" id="totalRevenue">Rs 0.00</div>
-      <div class="summary-divider"></div>
 
-      <div class="summary-stat">
-        <span>Units sold</span>
-        <strong id="totalSold">0</strong>
-      </div>
-    </aside>
       <!-- PRODUCT INVENTORY -->
+
       <section aria-labelledby="inventory-heading">
+
         <div class="section-heading">
-          <h2 id="inventory-heading">Product inventory</h2>
-          <span class="section-kicker">Stock, sales and revenue at a glance</span>
+
+          <h2 id="inventory-heading">
+            Product inventory
+          </h2>
+
+          <span class="section-kicker">
+            Stock, sales and revenue at a glance
+          </span>
+
         </div>
+
 
         <div class="table-wrap">
+
           <table>
+
             <thead>
+
               <tr>
-                <th>Product name</th>
-                <th class="num">Total quantity</th>
-                <th class="num">Remaining</th>
-                <th class="num">No. sold</th>
-                <th class="num">Price</th>
-                <th class="num">Item revenue</th>
-                <th>Actions</th>
+
+                <th>
+                  Product name
+                </th>
+
+                <th class="num">
+                  Total quantity
+                </th>
+
+                <th class="num">
+                  Remaining
+                </th>
+
+                <th class="num">
+                  No. sold
+                </th>
+
+                <th class="num">
+                  Price
+                </th>
+
+                <th class="num">
+                  Item revenue
+                </th>
+
+                <th>
+                  Actions
+                </th>
+
               </tr>
+
             </thead>
+
             <tbody id="rows"></tbody>
+
           </table>
+
         </div>
+
       </section>
 
+
       <!-- SALES HISTORY -->
-      <section class="history-section" aria-labelledby="history-heading">
+
+      <section
+        class="history-section"
+        aria-labelledby="history-heading">
+
         <div class="section-heading">
-          <h2 id="history-heading">Sales history</h2>
-          <span class="section-kicker">A record of completed sales</span>
+
+          <h2 id="history-heading">
+            Sales history
+          </h2>
+
+          <span class="section-kicker">
+            A record of completed sales
+          </span>
+
         </div>
 
+
         <div class="history-panel">
+
           <div class="table-wrap">
+
             <table>
+
               <thead>
+
                 <tr>
-                  <th>Date and time</th>
-                  <th>Product</th>
-                  <th class="num">Price</th>
+
+                  <th>
+                    Date and time
+                  </th>
+
+                  <th>
+                    Product
+                  </th>
+
+                  <th class="num">
+                    Price
+                  </th>
+
                 </tr>
+
               </thead>
+
               <tbody id="salesRows"></tbody>
+
             </table>
+
           </div>
+
         </div>
+
       </section>
 
     </main>
 
-    
+
+    <!-- =========================
+         RIGHT SIDE REVENUE
+    ========================== -->
+
+    <aside
+      class="summary"
+      aria-labelledby="summary-heading">
+
+      <div class="summary-top">
+
+        <h2 id="summary-heading">
+          Revenue summary
+        </h2>
+
+        <div
+          class="summary-icon"
+          aria-hidden="true">
+
+          ↗
+
+        </div>
+
+      </div>
+
+
+      <p class="summary-label">
+        Total system revenue
+      </p>
+
+      <div
+        class="total"
+        id="totalRevenue">
+
+        Rs 0.00
+
+      </div>
+
+
+      <div class="summary-divider"></div>
+
+
+      <div class="summary-stat">
+
+        <span>
+          Units sold
+        </span>
+
+        <strong id="totalSold">
+          0
+        </strong>
+
+      </div>
+
+    </aside>
+
   </div>
 
-  <p class="footer-note">PALETTES · by R</p>
+
+  <!-- FOOTER -->
+
+  <p class="footer-note">
+    PALETTES · by R
+  </p>
+
 </div>
 
+
 <script>
+
 /* =========================
    DOM HELPER & STATE
 ========================= */
+
 const $ = (id) => document.getElementById(id);
 
 let products = [];
 let sales = [];
 let busy = false;
 
+
 /* =========================
    CURRENCY FORMAT
 ========================= */
+
 const pkr = (n) =>
   "Rs " +
   Number(n).toLocaleString("en-US", {
@@ -973,259 +1307,668 @@ const pkr = (n) =>
     maximumFractionDigits: 2
   });
 
+
 /* =========================
-   ERROR MESSAGE BANNER
+   ERROR MESSAGE
 ========================= */
+
 function showError(msg) {
+
   $("banner").textContent = msg;
+
   $("banner").hidden = !msg;
+
 }
+
 
 /* =========================
    API FETCH WRAPPER
 ========================= */
+
 async function api(url, options) {
+
   const res = await fetch(url, options);
+
   const data = await res.json().catch(() => ({}));
 
   if (!res.ok) {
-    throw new Error(data.error || "Request failed");
+
+    throw new Error(
+      data.error || "Request failed"
+    );
+
   }
+
   return data;
+
 }
+
 
 /* =========================
    TABLE DOM CREATORS
 ========================= */
+
 function cell(text, cls, label) {
+
   const td = document.createElement("td");
+
   td.textContent = text;
-  if (cls) td.className = cls;
-  if (label) td.dataset.label = label;
+
+  if (cls) {
+    td.className = cls;
+  }
+
+  if (label) {
+    td.dataset.label = label;
+  }
+
   return td;
+
 }
 
+
 function emptyRow(tbody, cols, text) {
+
   const tr = document.createElement("tr");
+
   tr.className = "empty-row";
+
   const td = cell(text, "empty");
+
   td.colSpan = cols;
+
   tr.appendChild(td);
+
   tbody.appendChild(tr);
+
 }
+
 
 /* =========================
    LOAD DATA
 ========================= */
+
 async function loadAll() {
+
   try {
+
     [products, sales] = await Promise.all([
+
       api("/api/products"),
+
       api("/api/sales")
+
     ]);
 
     showError("");
+
     render();
+
   } catch (e) {
-    showError("Could not load data. Is the server running? " + e.message);
+
+    showError(
+      "Could not load data. Is the server running? " +
+      e.message
+    );
+
   }
+
 }
+
 
 /* =========================
-   RENDER FUNCTION
+   RENDER
 ========================= */
+
 function render() {
+
   const rows = $("rows");
+
   rows.innerHTML = "";
 
+
   /* EMPTY INVENTORY */
+
   if (!products.length) {
-    emptyRow(rows, 7, "No products yet. Add your first product above.");
+
+    emptyRow(
+      rows,
+      7,
+      "No products yet. Add your first product above."
+    );
+
   }
 
-  /* PRODUCTS LIST */
+
+  /* PRODUCTS */
+
   products.forEach((p) => {
+
     const tr = document.createElement("tr");
 
-    tr.appendChild(cell(p.name, "", "Product name"));
-    tr.appendChild(cell(p.total, "num", "Total quantity"));
 
-    const fraction = p.total > 0 ? p.remaining / p.total : 0;
-    const qtyClass = fraction >= 0.5 ? "good" : fraction >= 0.2 ? "mid" : "low";
+    tr.appendChild(
+      cell(
+        p.name,
+        "",
+        "Product name"
+      )
+    );
 
-    tr.appendChild(cell(p.remaining, "num qty " + qtyClass, "Remaining quantity"));
-    tr.appendChild(cell(p.sold, "num", "No. sold"));
-    tr.appendChild(cell(pkr(p.price), "num", "Price"));
-    tr.appendChild(cell(pkr(p.revenue), "num", "Item revenue"));
 
-    const td = cell("", "actions-cell", "Actions");
+    tr.appendChild(
+      cell(
+        p.total,
+        "num",
+        "Total quantity"
+      )
+    );
 
-    /* SELL BUTTON */
-    const sellBtn = document.createElement("button");
-    sellBtn.className = "btn-primary";
-    sellBtn.textContent = p.remaining > 0 ? "Sold 1 Unit" : "Out of stock";
-    sellBtn.disabled = p.remaining <= 0;
-    sellBtn.addEventListener("click", () => sellOne(p.id));
+
+    const fraction =
+      p.total > 0
+        ? p.remaining / p.total
+        : 0;
+
+
+    const qtyClass =
+      fraction >= 0.5
+        ? "good"
+        : fraction >= 0.2
+          ? "mid"
+          : "low";
+
+
+    tr.appendChild(
+      cell(
+        p.remaining,
+        "num qty " + qtyClass,
+        "Remaining quantity"
+      )
+    );
+
+
+    tr.appendChild(
+      cell(
+        p.sold,
+        "num",
+        "No. sold"
+      )
+    );
+
+
+    tr.appendChild(
+      cell(
+        pkr(p.price),
+        "num",
+        "Price"
+      )
+    );
+
+
+    tr.appendChild(
+      cell(
+        pkr(p.revenue),
+        "num",
+        "Item revenue"
+      )
+    );
+
+
+    /* ACTIONS */
+
+    const td =
+      cell(
+        "",
+        "actions-cell",
+        "Actions"
+      );
+
+
+    /* SELL */
+
+    const sellBtn =
+      document.createElement("button");
+
+    sellBtn.className =
+      "btn-primary";
+
+    sellBtn.textContent =
+      p.remaining > 0
+        ? "Sold 1 Unit"
+        : "Out of stock";
+
+    sellBtn.disabled =
+      p.remaining <= 0;
+
+    sellBtn.addEventListener(
+      "click",
+      () => sellOne(p.id)
+    );
+
     td.appendChild(sellBtn);
 
-    /* UNDO BUTTON */
-    const undoBtn = document.createElement("button");
-    undoBtn.className = "btn-ghost";
-    undoBtn.textContent = "Undo last sale";
-    undoBtn.disabled = p.sold <= 0;
-    undoBtn.addEventListener("click", () => undoLastSale(p.id));
+
+    /* UNDO */
+
+    const undoBtn =
+      document.createElement("button");
+
+    undoBtn.className =
+      "btn-ghost";
+
+    undoBtn.textContent =
+      "Undo last sale";
+
+    undoBtn.disabled =
+      p.sold <= 0;
+
+    undoBtn.addEventListener(
+      "click",
+      () => undoLastSale(p.id)
+    );
+
     td.appendChild(undoBtn);
 
-    /* DELETE BUTTON */
-    const delBtn = document.createElement("button");
-    delBtn.className = "btn-danger";
-    delBtn.textContent = "Delete";
-    delBtn.addEventListener("click", () => deleteProduct(p.id, p.name));
+
+    /* DELETE */
+
+    const delBtn =
+      document.createElement("button");
+
+    delBtn.className =
+      "btn-danger";
+
+    delBtn.textContent =
+      "Delete";
+
+    delBtn.addEventListener(
+      "click",
+      () =>
+        deleteProduct(
+          p.id,
+          p.name
+        )
+    );
+
     td.appendChild(delBtn);
 
+
     tr.appendChild(td);
+
     rows.appendChild(tr);
+
   });
 
-  /* SALES HISTORY TABLE */
-  const salesRows = $("salesRows");
+
+  /* =========================
+     SALES HISTORY
+  ========================== */
+
+  const salesRows =
+    $("salesRows");
+
   salesRows.innerHTML = "";
 
+
   if (!sales.length) {
-    emptyRow(salesRows, 3, "No sales recorded yet.");
+
+    emptyRow(
+      salesRows,
+      3,
+      "No sales recorded yet."
+    );
+
   }
 
+
   sales.forEach((s) => {
-    const tr = document.createElement("tr");
-    tr.appendChild(cell(new Date(s.sold_at).toLocaleString(), "", "Date and time"));
-    tr.appendChild(cell(s.product_name, "", "Product"));
-    tr.appendChild(cell(pkr(s.price), "num", "Price"));
+
+    const tr =
+      document.createElement("tr");
+
+
+    tr.appendChild(
+      cell(
+        new Date(
+          s.sold_at
+        ).toLocaleString(),
+        "",
+        "Date and time"
+      )
+    );
+
+
+    tr.appendChild(
+      cell(
+        s.product_name,
+        "",
+        "Product"
+      )
+    );
+
+
+    tr.appendChild(
+      cell(
+        pkr(s.price),
+        "num",
+        "Price"
+      )
+    );
+
+
     salesRows.appendChild(tr);
+
   });
 
-  /* REVENUE TOTALS */
-  $("totalRevenue").textContent = pkr(
-    products.reduce((total, p) => total + Number(p.revenue), 0)
-  );
 
-  $("totalSold").textContent = products.reduce(
-    (total, p) => total + Number(p.sold),
-    0
-  );
+  /* =========================
+     REVENUE TOTALS
+  ========================== */
+
+  $("totalRevenue").textContent =
+    pkr(
+      products.reduce(
+        (total, p) =>
+          total + Number(p.revenue),
+        0
+      )
+    );
+
+
+  $("totalSold").textContent =
+    products.reduce(
+      (total, p) =>
+        total + Number(p.sold),
+      0
+    );
+
 }
+
 
 /* =========================
    PRODUCT ACTIONS
 ========================= */
-async function runProductAction(url, failureMessage) {
+
+async function runProductAction(
+  url,
+  failureMessage
+) {
+
   if (busy) return;
+
   busy = true;
 
   let failure = "";
+
+
   try {
-    await api(url, {
-      method: url.endsWith("/sell") || url.endsWith("/undo") ? "POST" : "DELETE"
-    });
+
+    await api(
+      url,
+      {
+        method:
+          url.endsWith("/sell") ||
+          url.endsWith("/undo")
+            ? "POST"
+            : "DELETE"
+      }
+    );
+
   } catch (e) {
-    failure = failureMessage + e.message;
+
+    failure =
+      failureMessage +
+      e.message;
+
   }
 
+
   await loadAll();
-  if (failure) showError(failure);
+
+
+  if (failure) {
+    showError(failure);
+  }
+
+
   busy = false;
+
 }
+
 
 async function sellOne(id) {
-  await runProductAction("/api/products/" + id + "/sell", "Sale failed: ");
+
+  await runProductAction(
+    "/api/products/" +
+    id +
+    "/sell",
+    "Sale failed: "
+  );
+
 }
+
 
 async function undoLastSale(id) {
-  await runProductAction("/api/products/" + id + "/undo", "Undo failed: ");
+
+  await runProductAction(
+    "/api/products/" +
+    id +
+    "/undo",
+    "Undo failed: "
+  );
+
 }
 
-async function deleteProduct(id, name) {
+
+async function deleteProduct(
+  id,
+  name
+) {
+
   if (busy) return;
-  
-  const confirmDelete = window.confirm('Delete "' + name + '" from the table? This cannot be undone.');
+
+
+  const confirmDelete =
+    window.confirm(
+      'Delete "' +
+      name +
+      '" from the table? This cannot be undone.'
+    );
+
+
   if (!confirmDelete) return;
 
-  await runProductAction("/api/products/" + id, "Delete failed: ");
+
+  await runProductAction(
+    "/api/products/" + id,
+    "Delete failed: "
+  );
+
 }
+
 
 /* =========================
    CSV EXPORT
 ========================= */
+
 function csvField(value) {
+
   const s = String(value);
-  return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+
+  return /[",\n]/.test(s)
+    ? '"' +
+      s.replace(/"/g, '""') +
+      '"'
+    : s;
+
 }
+
 
 function downloadCsv() {
+
   const headers = [
+
     "Product Name",
+
     "Total Quantity",
+
     "Remaining Quantity",
+
     "No. Sold",
+
     "Price (PKR)",
+
     "Item Revenue (PKR)"
+
   ];
 
-  const lines = [headers.join(",")];
+
+  const lines = [
+    headers.join(",")
+  ];
+
 
   products.forEach((p) => {
+
     lines.push(
-      [p.name, p.total, p.remaining, p.sold, p.price, p.revenue]
+
+      [
+        p.name,
+        p.total,
+        p.remaining,
+        p.sold,
+        p.price,
+        p.revenue
+      ]
         .map(csvField)
         .join(",")
+
     );
+
   });
 
-  const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8;" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
+
+  const blob =
+    new Blob(
+      [lines.join("\n")],
+      {
+        type:
+          "text/csv;charset=utf-8;"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const a =
+    document.createElement("a");
+
+
   a.href = url;
-  a.download = "palettes_inventory_" + new Date().toISOString().slice(0, 10) + ".csv";
+
+
+  a.download =
+    "palettes_inventory_" +
+    new Date()
+      .toISOString()
+      .slice(0, 10) +
+    ".csv";
+
+
   document.body.appendChild(a);
+
   a.click();
+
   a.remove();
+
   URL.revokeObjectURL(url);
+
 }
 
-$("csvBtn").addEventListener("click", downloadCsv);
+
+$("csvBtn").addEventListener(
+  "click",
+  downloadCsv
+);
+
 
 /* =========================
-   ADD PRODUCT FORM SUBMIT
+   ADD PRODUCT
 ========================= */
-$("addForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  if (busy) return;
 
-  const body = {
-    name: $("name").value.trim(),
-    qty: $("qty").value,
-    price: $("price").value
-  };
+$("addForm").addEventListener(
+  "submit",
+  async (e) => {
 
-  try {
-    await api("/api/products", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body)
-    });
-  } catch (err) {
-    showError("Could not add product: " + err.message);
-    return;
+    e.preventDefault();
+
+    if (busy) return;
+
+
+    const body = {
+
+      name:
+        $("name")
+          .value
+          .trim(),
+
+      qty:
+        $("qty").value,
+
+      price:
+        $("price").value
+
+    };
+
+
+    try {
+
+      await api(
+        "/api/products",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body:
+            JSON.stringify(body)
+        }
+      );
+
+    } catch (err) {
+
+      showError(
+        "Could not add product: " +
+        err.message
+      );
+
+      return;
+
+    }
+
+
+    e.target.reset();
+
+    await loadAll();
+
+    $("name").focus();
+
   }
+);
 
-  e.target.reset();
-  await loadAll();
-  $("name").focus();
-});
 
 /* =========================
    INITIAL LOAD
 ========================= */
+
 loadAll();
+
 </script>
 
 </body>
