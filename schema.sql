@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS products (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  total INTEGER NOT NULL CHECK (total >= 0),
+  remaining INTEGER NOT NULL CHECK (remaining >= 0),
+  sold INTEGER NOT NULL DEFAULT 0,
+  price NUMERIC(12,2) NOT NULL CHECK (price >= 0),
+  revenue NUMERIC(14,2) NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS sales (
+  id SERIAL PRIMARY KEY,
+  product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+  product_name TEXT NOT NULL,
+  price NUMERIC(12,2) NOT NULL,
+  sold_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
