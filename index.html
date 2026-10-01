@@ -34,6 +34,7 @@
   .btn-danger:hover { background: #a92121; }
   .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
   .btn-ghost:hover { background: #f1f5f6; }
+  .btn-ghost:disabled { color: #b7c3cc; cursor: not-allowed; }
   .actions-cell { display: flex; gap: 8px; flex-wrap: wrap; }
 
   .table-wrap { background: var(--card); border-radius: 8px; overflow-x: auto; border: 1px solid var(--line); }
@@ -132,7 +133,7 @@
       showError("");
       render();
     } catch (e) {
-      showError("Could not load data. Is the server running? " + e.message);
+      showError("Could not load data. " + e.message);
     }
   }
 
@@ -160,6 +161,13 @@
       sellBtn.disabled = p.remaining <= 0;
       sellBtn.addEventListener("click", () => sellOne(p.id));
       td.appendChild(sellBtn);
+
+      const undoBtn = document.createElement("button");
+      undoBtn.className = "btn-ghost";
+      undoBtn.textContent = "Undo last sale";
+      undoBtn.disabled = p.sold <= 0;
+      undoBtn.addEventListener("click", () => undoLastSale(p.id));
+      td.appendChild(undoBtn);
 
       const delBtn = document.createElement("button");
       delBtn.className = "btn-danger";
@@ -192,6 +200,17 @@
     let failure = "";
     try { await api("/api/products/" + id + "/sell", { method: "POST" }); }
     catch (e) { failure = "Sale failed: " + e.message; }
+    await loadAll();
+    if (failure) showError(failure);
+    busy = false;
+  }
+
+  async function undoLastSale(id) {
+    if (busy) return;
+    busy = true;
+    let failure = "";
+    try { await api("/api/products/" + id + "/undo", { method: "POST" }); }
+    catch (e) { failure = "Undo failed: " + e.message; }
     await loadAll();
     if (failure) showError(failure);
     busy = false;
@@ -232,24 +251,6 @@
   }
 
   $("csvBtn").addEventListener("click", downloadCsv);
-
-  $("addForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const body = { name: $("name").value, qty: $("qty").value, price: $("price").value };
-    try {
-      await api("/api/products", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
-    } catch (err) {
-      showError("Could not add product: " + err.message);
-      return;
-    }
-    e.target.reset();
-    $("name").focus();
-    await loadAll();
-  });
 
   loadAll();
 </script>
